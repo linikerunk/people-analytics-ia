@@ -7,29 +7,20 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
-from .models import Customer
+from .models import Employee
 from .serializers import *
 
 
-# # @method_decorator(login_required, name='dispatch')
-# class UserProfileView(View):
-
-#     template_name = ''
-
-#     def get(self, request, *args, **kwargs):
-#         return HttpResponse("I'm on the UserProfile")
-
-
 @api_view(['GET', 'POST'])
-def customers_list(request):
+def employee_list(request):
 
     if request.method == 'GET':
         data = []
         nextPage = 1
         previousPage = 1
-        customers = Customer.objects.all()
+        employee = Employee.objects.all()
         page = request.GET.get('page', 1)
-        paginator = Paginator(customers, 10)
+        paginator = Paginator(employee, 10)
         try:
             data = paginator.page(page)
         except PageNotAnInteger:
@@ -37,17 +28,20 @@ def customers_list(request):
         except EmptyPage:
             data = paginator.page(paginator.num_pages)
 
-        serializer = CustomerSerializer(
+        serializer = EmployeeSerializer(
             data, context={'request': request}, many=True)
         if data.has_next():
             nextPage = data.next_page_number()
         if data.has_previous():
             previousPage = data.previous_page_number()
 
-        return Response({'data': serializer.data, 'count': paginator.count, 'numpages': paginator.num_pages, 'nextlink': '/api/customers/?page=' + str(nextPage), 'prevlink': '/api/customers/?page=' + str(previousPage)})
+        return Response({'data': serializer.data, 'count': paginator.count,
+                       'numpages': paginator.num_pages,
+                       'nextlink': '/api/employees/?page=' + str(nextPage),
+                       'prevlink': '/api/employees/?page=' + str(previousPage)})
 
     elif request.method == 'POST':
-        serializer = CustomerSerializer(data=request.data)
+        serializer = EmployeeSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -55,24 +49,87 @@ def customers_list(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def customers_detail(request, pk):
+def employee_detail(request, pk):
 
     try:
-        customer = Customer.objects.get(pk=pk)
-    except Customer.DoesNotExist:
+        employee = Employee.objects.get(pk=pk)
+    except Employee.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = CustomerSerializer(customer, context={'request': request})
+        serializer = EmployeeSerializer(employee, context={'request': request})
         return Response(serializer.data)
 
     elif request.method == 'PUT':
-        serializer = CustomerSerializer(customer, data=request.data, context={'request': request})
+        serializer = EmployeeSerializer(
+            employee, data=request.data, context={'request': request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'DELETE':
-        customer.delete()
+        employee.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET', 'POST'])
+def costcenter_list(request):
+
+    if request.method == 'GET':
+        data = []
+        nextPage = 1
+        previousPage = 1
+        costcenter = CostCenter.objects.all()
+        page = request.GET.get('page', 1)
+        paginator = Paginator(costcenter, 10)
+        try:
+            data = paginator.page(page)
+        except PageNotAnInteger:
+            data = paginator.page(1)
+        except EmptyPage:
+            data = paginator.page(paginator.num_pages)
+
+        serializer = CostCenterSerializer(
+            data, context={'request': request}, many=True)
+        if data.has_next():
+            nextPage = data.next_page_number()
+        if data.has_previous():
+            previousPage = data.previous_page_number()
+
+        return Response({'data': serializer.data, 'count': paginator.count,
+                         'numpages': paginator.num_pages,
+                         'nextlink': '/api/costcenter/?page=' + str(nextPage),
+                         'prevlink': '/api/costcenter/?page=' + str(previousPage)})
+
+    elif request.method == 'POST':
+        serializer = CostCenterSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def costcenter_detail(request, pk):
+    try:
+        costcenter = CostCenterSerializer.objects.get(pk=pk)
+    except Employee.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = CostCenterSerializer(costcenter,
+                                          context={'request': request})
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = CostCenterSerializer(
+            costcenter, data=request.data, context={'request': request})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        costcenter.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

@@ -6,6 +6,8 @@ from users import views
 
 
 urlpatterns = [
-    url(r'^api/customers/$', views.customers_list),
-    url(r'^api/customers/(?P<pk>[0-9]+)$', views.customers_detail),
+    url(r'^api/employees/$', views.employee_list),
+    url(r'^api/employees/(?P<pk>[0-9]+)$', views.employee_detail),
+    url(r'^api/costcenter/$', views.employee_list),
+    url(r'^api/costcenter/(?P<pk>[0-9]+)$', views.employee_detail),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,10 +1,18 @@
 from rest_framework import serializers
-from .models import Customer
+from .models import Employee, CostCenter
 
 
-class CustomerSerializer(serializers.ModelSerializer):
+class EmployeeSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Customer
-        fields = ('pk', 'first_name', 'last_name', 'email',
-                  'phone', 'address', 'description')
+        model = Employee
+        fields = ('identifier', 'name', 'admission', 'email', 'role', 
+                  'resignation', 'birth_date', 'zip_code', 'phone', 'cpf',
+                  'cost_center', 'gender', 'photo')
+
+
+class CostCenterSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CostCenter
+        fields = ('number', 'name_department', 'responsible')
