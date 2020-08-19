@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Base(models.Model):
@@ -13,7 +13,7 @@ class Base(models.Model):
 
 class Training(Base):
     training_name = models.CharField('Nome Treinamento', max_length=100)
-    category = models.CharField(Categoria, max_length=25)
+    category = models.CharField('Categoria', max_length=25)
     content = models.TextField('Conteúdo')
     required = models.CharField('Requisito', max_length=50)
     resource = models.CharField('Recursos', max_length=50)
@@ -55,7 +55,7 @@ class Instructor(Base):
     instructor_photo = models.ImageField(upload_to='photos_instructor',
                                          null=True, blank=True,
                                          verbose_name=u'Foto do Instrutor')
-    training = models.ManyToManyField(Training, 'Treinamento Habilitado')
+    # training = models.ManyToManyField(Training, 'Treinamento Habilitado')
 
     def __str__(self):
         return ' %s ' % f"Registro : {self.registro_instrutor} "
@@ -69,12 +69,12 @@ class Event(models.Model):
     event_date = models.DateTimeField('Data Consulta', blank=True)
     present_list = models.FileField('Lista de Presença',
                                     upload_to="present_list", default="")
-    training = models.ForeignKey(
-        Treinamento, 'Treinamento', blank=True, on_delete=models.CASCADE)
-    entity = models.ForeignKey(
-        Entidade, 'Entidade', blank=True, on_delete=models.CASCADE)
-    instructor = models.ForeignKey(
-        Instrutor, 'Instrutor', blank=True, on_delete=models.CASCADE)
+    # training = models.ForeignKey(
+    #    Training, 'Treinamento', blank=True, on_delete=models.CASCADE)
+    # entity = models.ForeignKey(
+    #    Entity, 'Entidade', blank=True, on_delete=models.CASCADE)
+    # instructor = models.ForeignKey(
+    #    Instructor, 'Instrutor', blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return  ' %s ' % f"{self.event_name}"
