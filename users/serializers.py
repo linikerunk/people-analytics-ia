@@ -1,5 +1,10 @@
 from rest_framework import serializers
-from .models import Employee, CostCenter
+from .models import Employee, CostCenter, Unity
+
+
+class UnitySerializer(serializers.ModelSerializer):
+    model = Unity
+    fields = ('name')
 
 
 class EmployeeSerializer(serializers.ModelSerializer):

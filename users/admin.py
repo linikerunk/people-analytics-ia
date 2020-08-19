@@ -1,6 +1,10 @@
 from django.contrib import admin
-from .models import Employee, CostCenter
+from .models import Employee, CostCenter, Unity
 
+
+@admin.register(Unity)
+class Unity(admin.ModelAdmin):
+    list_display = ['name']
 
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):
@@ -9,4 +13,4 @@ class EmployeeAdmin(admin.ModelAdmin):
 
 @admin.register(CostCenter)
 class CostCenterAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['number', 'name_department', 'responsible']

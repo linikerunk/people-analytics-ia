@@ -42,8 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'stdimage',
     'users.apps.UsersConfig',
     'training.apps.TrainingConfig',
+    'health.apps.HealthConfig',
 ]
 
 MIDDLEWARE = [

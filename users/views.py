@@ -9,7 +9,12 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from .models import Employee
 from .serializers import *
+from django.http import JsonResponse
 
+
+def index(request):
+    data = {'message': 'PeopleAnalytics IA'}
+    return JsonResponse(data)
 
 @api_view(['GET', 'POST'])
 def employee_list(request):
