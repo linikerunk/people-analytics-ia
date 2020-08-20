@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import SignInBackground from '../../assets/img/SignInPhoto.png'
+import SignUpBackground from '../../assets/img/SignUpPhoto.png'
 
 export const Container = styled.div`
     height: 100%;
@@ -77,6 +77,6 @@ export const Content = styled.div`
 export const Background = styled.div`
     display: flex;
     flex: 1;
-    background: url(${SignInBackground}) no-repeat center;
+    background: url(${SignUpBackground}) no-repeat center;
     background-size: cover;
 `
