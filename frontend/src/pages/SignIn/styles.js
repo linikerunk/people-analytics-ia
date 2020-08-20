@@ -31,6 +31,7 @@ export const Content = styled.div`
         text-align: center;
 
         input {
+            color: #fff;
             background: #242A30;
             border-radius: 10px;
             border: 2px solid #0579FA;

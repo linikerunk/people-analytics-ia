@@ -1,14 +1,80 @@
 import React from 'react';
+import { FaChartBar, FaUser, FaSearch, FaUniversity, FaClock, FaRegCheckSquare, FaUserAltSlash } from 'react-icons/fa'
 
-import Header from '../../components/Header'
-import Aside from '../../components/Aside'
-
-import { Container } from './styles'
+import { Container, MenuBlock, ComponentBlock } from './styles'
 
 export default function Home(){
     return (
         <Container >
-        < Aside />
+            <h1>Home</h1>
+            <hr />
+            <MenuBlock>
+                <ComponentBlock>
+                    <div>
+                        <FaChartBar size={48}/>
+                        <span>Dashboard</span>
+                    </div>
+                    <span>
+                        Gráficos detalhados referente aos funcionários e desempenho dos mesmos.
+                    </span>
+                </ComponentBlock>
+                <ComponentBlock>
+                    <div>
+                        <FaUser size={48}/>
+                        <span>Funcionários</span>
+                    </div>
+                    <span>
+                        Adicione, altere ou remova dados de funcionários.
+                    </span>
+                </ComponentBlock>
+                <ComponentBlock>
+                    <div>
+                        <FaSearch size={48}/>
+                        <span>Recutamento</span>
+                    </div>
+                    <span>
+                        Busque por candidatos.
+                    </span>
+                </ComponentBlock>
+                <ComponentBlock>
+                    <div>
+                        <FaUniversity size={48}/>
+                        <span>Treinamento</span>
+                    </div>
+                    <span>
+                        Agende e organize treinamentos.
+                    </span>
+                </ComponentBlock>
+            </MenuBlock>
+            <MenuBlock>
+            <ComponentBlock>
+                    <div>
+                        <FaClock size={48}/>
+                        <span>Gestão de Horas</span>
+                    </div>
+                    <span>
+                        Controle de horas.
+                    </span>
+                </ComponentBlock>
+                <ComponentBlock>
+                    <div>
+                        <FaRegCheckSquare size={48}/>
+                        <span>Performance</span>
+                    </div>
+                    <span>
+                        Dados detalhados em relação a performance dos funcionários
+                    </span>
+                </ComponentBlock>
+                <ComponentBlock>
+                    <div>
+                        <FaUserAltSlash size={48}/>
+                        <span>Desligamento</span>
+                    </div>
+                    <span>
+                        Histórico de desligamentos
+                    </span>
+                </ComponentBlock>
+            </MenuBlock>
         </Container>
     )
 }
