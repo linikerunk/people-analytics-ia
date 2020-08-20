@@ -1,4 +1,4 @@
-from django.urls import path, re_path # path is a relative path to create a route
+from django.urls import path # path is a relative path to create a route
 from django.conf import settings
 from django.conf.urls.static import static # static provides a file static to me
 from django.conf.urls import url

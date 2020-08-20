@@ -21,6 +21,10 @@ class Base(models.Model):
 class Unity(Base):
     name = models.CharField(max_length=64, unique=True)
 
+    class Meta:
+        verbose_name = "Unidade"
+        verbose_name_plural = "Unidades"
+
     def __str__(self):
         return self.name
 
@@ -32,7 +36,8 @@ class CostCenter(Base):
     responsible = models.CharField(max_length=50)
 
     class Meta:
-        verbose_name_plural = "CostCenter"
+        verbose_name = "Centro de Custo"
+        verbose_name_plural = "Centro de Custos"
 
     def __str__(self):
         return  self.number
@@ -80,8 +85,8 @@ class Employee(Base):
         return default_storage.open(f'{PHOTOS_FOLDER}/{DEFAULT}').name
 
     class Meta:
-        verbose_name_plural = "Employees"
-
+        verbose_name = "Funcionário"
+        verbose_name_plural = "Funcionários"
 
     def __str__(self):
-        return self.name
+        return f"Identificação : {self.identifier} | Nome: {self.name}"

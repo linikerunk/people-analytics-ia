@@ -13,7 +13,7 @@ from django.http import JsonResponse
 
 
 def index(request):
-    data = {'message': 'PeopleAnalytics IA'}
+    data = {'message': 'PeopleAnalytics WebSystem'}
     return JsonResponse(data)
 
 @api_view(['GET', 'POST'])

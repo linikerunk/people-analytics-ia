@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'training.apps.TrainingConfig',
     'health.apps.HealthConfig',
+    'performance.apps.PerformanceConfig',
 ]
 
 MIDDLEWARE = [
