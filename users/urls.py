@@ -9,6 +9,8 @@ app_name = "users"
 
 urlpatterns = [
     path('', views.index, name="index"),
+    path('current_user/', views.current_user),
+    path('users/', views.UserList.as_view()),
     path('api/employees/', views.employee_list),
     path('api/employees/<int:id>', views.employee_detail),
     path('api/costcenter/', views.employee_list),
