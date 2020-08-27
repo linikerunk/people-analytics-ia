@@ -1,4 +1,4 @@
-# TCC-PeopleAnalytics-IA
+# PeopleAnalytics-IA
 This is my TCC for the academyc studies, this project is been process yet, but my start become today "06/17/2020", all steps and all commits.
 
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
